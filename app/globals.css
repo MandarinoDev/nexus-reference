@@ -76,7 +76,7 @@
 
 @theme inline {
   --font-sans: "Manrope", "Manrope Fallback", sans-serif;
-  --font-display: "Cal Sans", "Cal Sans Fallback", sans-serif;
+  --font-display: "Outfit", "Outfit Fallback", sans-serif;
   --font-heading: "Instrument Sans", "Instrument Sans Fallback", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
