@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { ArrowRight } from "lucide-react"
@@ -30,18 +31,22 @@ export function FinalCTA() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
+            asChild
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-14 text-base font-medium shadow-lg shadow-white/20"
           >
-            Empezar gratis
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <Link href="/register">
+              Empezar gratis
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
           </Button>
           <Button
+            asChild
             variant="outline"
             size="lg"
             className="rounded-full px-8 h-14 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
           >
-            Hablar con ventas
+            <Link href="/login">Iniciar sesión</Link>
           </Button>
         </div>
 

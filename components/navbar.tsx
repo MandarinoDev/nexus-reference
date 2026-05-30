@@ -1,21 +1,41 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import type { User } from "@supabase/supabase-js"
+import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { label: "Características", href: "#features" },
-  { label: "Precios", href: "#pricing" },
-  { label: "Documentación", href: "#docs" },
-  { label: "Blog", href: "#blog" },
+  { label: "Características", href: "/#features" },
+  { label: "Precios", href: "/#pricing" },
+  { label: "Documentación", href: "/#docs" },
+  { label: "Blog", href: "/#blog" },
 ]
 
 export function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
   const navRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const supabase = createClient()
+
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   return (
     <motion.header
@@ -28,15 +48,13 @@ export function Navbar() {
         ref={navRef}
         className="relative flex items-center justify-between px-4 py-3 rounded-full bg-zinc-900/40 backdrop-blur-md border border-zinc-800"
       >
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
             <span className="text-zinc-950 font-bold text-sm">A</span>
           </div>
           <span className="font-semibold text-white hidden sm:block">Apex</span>
-        </a>
+        </Link>
 
-        {/* Desktop Nav Items */}
         <div className="hidden md:flex items-center gap-1 relative">
           {navItems.map((item, index) => (
             <a
@@ -59,17 +77,35 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white hover:bg-zinc-800">
-            Iniciar sesión
-          </Button>
-          <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
-            Empezar
-          </Button>
+          {user ? (
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+              >
+                <Link href="/dashboard">Mi cuenta</Link>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+              >
+                <Link href="/login">Iniciar sesión</Link>
+              </Button>
+              <Button asChild size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
+                <Link href="/register">Empezar</Link>
+              </Button>
+            </>
+          )}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-zinc-400 hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -79,7 +115,6 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -99,10 +134,26 @@ export function Navbar() {
               </a>
             ))}
             <hr className="border-zinc-800 my-2" />
-            <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white">
-              Iniciar sesión
-            </Button>
-            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">Empezar</Button>
+            {user ? (
+              <Button asChild className="justify-start text-zinc-400 hover:text-white">
+                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                  Mi cuenta
+                </Link>
+              </Button>
+            ) : (
+              <>
+                <Button asChild variant="ghost" className="justify-start text-zinc-400 hover:text-white">
+                  <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                    Iniciar sesión
+                  </Link>
+                </Button>
+                <Button asChild className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
+                  <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                    Empezar
+                  </Link>
+                </Button>
+              </>
+            )}
           </div>
         </motion.div>
       )}

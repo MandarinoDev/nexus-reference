@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -87,18 +88,22 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <Button
+            asChild
             size="lg"
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-12 text-base font-medium shadow-lg shadow-white/10"
           >
-            Empezar a crear
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <Link href="/register">
+              Empezar a crear
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
           </Button>
           <Button
+            asChild
             variant="outline"
             size="lg"
             className="rounded-full px-8 h-12 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
           >
-            Ver demo
+            <Link href="/login">Iniciar sesión</Link>
           </Button>
         </motion.div>
 
