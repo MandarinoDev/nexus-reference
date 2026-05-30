@@ -23,6 +23,9 @@ export function Navbar() {
 
   useEffect(() => {
     const supabase = createClient()
+    if (!supabase) {
+      return
+    }
 
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user)
