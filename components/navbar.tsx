@@ -6,9 +6,9 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Docs", href: "#docs" },
+  { label: "Características", href: "#features" },
+  { label: "Precios", href: "#pricing" },
+  { label: "Documentación", href: "#docs" },
   { label: "Blog", href: "#blog" },
 ]
 
@@ -62,10 +62,10 @@ export function Navbar() {
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <Button variant="ghost" size="sm" className="text-zinc-400 hover:text-white hover:bg-zinc-800">
-            Sign In
+            Iniciar sesión
           </Button>
           <Button size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
-            Get Started
+            Empezar
           </Button>
         </div>
 
@@ -73,7 +73,7 @@ export function Navbar() {
         <button
           className="md:hidden p-2 text-zinc-400 hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Abrir menú"
         >
           {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -100,9 +100,9 @@ export function Navbar() {
             ))}
             <hr className="border-zinc-800 my-2" />
             <Button variant="ghost" className="justify-start text-zinc-400 hover:text-white">
-              Sign In
+              Iniciar sesión
             </Button>
-            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">Get Started</Button>
+            <Button className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">Empezar</Button>
           </div>
         </motion.div>
       )}

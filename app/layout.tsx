@@ -22,9 +22,10 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Apex - Enterprise SaaS Platform",
-  description: "The modern platform for teams who ship fast. Built for scale, designed for speed.",
-    generator: 'v0.app'
+  title: "Apex - Plataforma SaaS empresarial",
+  description:
+    "La plataforma moderna para equipos que lanzan rápido. Diseñada para escalar, pensada para la velocidad.",
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -33,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="es" className="dark">
       <body className={`${manrope.variable} ${calSans.variable} ${instrumentSans.variable} font-sans antialiased`}>
         <div className="noise-overlay" aria-hidden="true" />
         {children}

@@ -131,10 +131,11 @@ export function BentoGrid() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Everything you need to ship
+            Todo lo que necesitas para lanzar
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
-            Built for modern teams. Powerful features that help you build, deploy, and scale faster than ever.
+            Pensada para equipos modernos. Funciones potentes que te ayudan a crear, desplegar y escalar más rápido que
+            nunca.
           </p>
         </motion.div>
 
@@ -155,15 +156,16 @@ export function BentoGrid() {
                 <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
                   <Activity className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Real-time Monitoring</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">Monitorización en tiempo real</h3>
                 <p className="text-zinc-400 text-sm">
-                  Track system health, performance metrics, and alerts in real-time across all your deployments.
+                  Supervisa el estado del sistema, métricas de rendimiento y alertas en tiempo real en todos tus
+                  despliegues.
                 </p>
               </div>
               <SystemStatus />
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {["CPU", "Memory", "Network", "Storage"].map((metric) => (
+              {["CPU", "Memoria", "Red", "Almacenamiento"].map((metric) => (
                 <div key={metric} className="text-center">
                   <div className="text-2xl font-bold text-white mb-1">{Math.floor(Math.random() * 40 + 60)}%</div>
                   <div className="text-xs text-zinc-500">{metric}</div>
@@ -180,8 +182,10 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Command className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Command Palette</h3>
-            <p className="text-zinc-400 text-sm mb-6">Navigate anywhere instantly with powerful keyboard shortcuts.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">Paleta de comandos</h3>
+            <p className="text-zinc-400 text-sm mb-6">
+              Navega a cualquier parte al instante con atajos de teclado potentes.
+            </p>
             <KeyboardCommand />
           </motion.div>
 
@@ -193,8 +197,8 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <BarChart3 className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Analytics</h3>
-            <p className="text-zinc-400 text-sm mb-4">Deep insights into your application performance.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">Analítica</h3>
+            <p className="text-zinc-400 text-sm mb-4">Información detallada sobre el rendimiento de tu aplicación.</p>
             <AnimatedChart />
           </motion.div>
 
@@ -206,13 +210,13 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Zap className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Blazing Fast</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Ultrarrápido</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              Edge-optimized infrastructure for sub-50ms response times globally.
+              Infraestructura optimizada en el edge con tiempos de respuesta inferiores a 50 ms en todo el mundo.
             </p>
             <div className="flex items-center gap-2 text-emerald-500 text-sm">
               <span className="font-mono">~32ms</span>
-              <span className="text-zinc-500">avg response</span>
+              <span className="text-zinc-500">respuesta media</span>
             </div>
           </motion.div>
 
@@ -224,8 +228,10 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Shield className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Enterprise Security</h3>
-            <p className="text-zinc-400 text-sm mb-4">SOC2 compliant with end-to-end encryption and SSO support.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">Seguridad empresarial</h3>
+            <p className="text-zinc-400 text-sm mb-4">
+              Cumplimiento SOC2 con cifrado de extremo a extremo y soporte SSO.
+            </p>
             <div className="flex items-center gap-2">
               <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">SOC2</span>
               <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">GDPR</span>

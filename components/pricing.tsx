@@ -7,43 +7,49 @@ import { Button } from "@/components/ui/button"
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for side projects and small teams",
+    name: "Inicial",
+    description: "Ideal para proyectos personales y equipos pequeños",
     price: { monthly: 0, yearly: 0 },
-    features: ["3 team members", "10 projects", "Basic analytics", "Community support", "1GB storage"],
-    cta: "Get Started",
+    features: [
+      "3 miembros del equipo",
+      "10 proyectos",
+      "Analítica básica",
+      "Soporte de la comunidad",
+      "1 GB de almacenamiento",
+    ],
+    cta: "Empezar",
     highlighted: false,
   },
   {
     name: "Pro",
-    description: "For growing teams that need more power",
+    description: "Para equipos en crecimiento que necesitan más potencia",
     price: { monthly: 29, yearly: 24 },
     features: [
-      "Unlimited team members",
-      "Unlimited projects",
-      "Advanced analytics",
-      "Priority support",
-      "100GB storage",
-      "Custom domains",
-      "API access",
+      "Miembros ilimitados",
+      "Proyectos ilimitados",
+      "Analítica avanzada",
+      "Soporte prioritario",
+      "100 GB de almacenamiento",
+      "Dominios personalizados",
+      "Acceso a la API",
     ],
-    cta: "Start Free Trial",
+    cta: "Prueba gratis",
     highlighted: true,
   },
   {
-    name: "Enterprise",
-    description: "For organizations with advanced needs",
+    name: "Empresa",
+    description: "Para organizaciones con necesidades avanzadas",
     price: { monthly: 99, yearly: 79 },
     features: [
-      "Everything in Pro",
-      "SSO & SAML",
-      "Dedicated support",
-      "SLA guarantee",
-      "Unlimited storage",
-      "Custom integrations",
-      "Audit logs",
+      "Todo lo de Pro",
+      "SSO y SAML",
+      "Soporte dedicado",
+      "Garantía SLA",
+      "Almacenamiento ilimitado",
+      "Integraciones personalizadas",
+      "Registros de auditoría",
     ],
-    cta: "Contact Sales",
+    cta: "Contactar ventas",
     highlighted: false,
   },
 ]
@@ -79,10 +85,10 @@ export function Pricing() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Simple, transparent pricing
+            Precios simples y transparentes
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
-            Start free, scale as you grow. No hidden fees, no surprises.
+            Empieza gratis y escala según crezcas. Sin costes ocultos ni sorpresas.
           </p>
 
           {/* Billing Toggle */}
@@ -100,7 +106,7 @@ export function Pricing() {
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">Monthly</span>
+              <span className="relative z-10">Mensual</span>
             </button>
             <button
               onClick={() => setBillingCycle("yearly")}
@@ -115,7 +121,7 @@ export function Pricing() {
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">Yearly</span>
+              <span className="relative z-10">Anual</span>
               <span className="relative z-10 ml-2 px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">
                 -20%
               </span>
@@ -146,7 +152,7 @@ export function Pricing() {
 
               {plan.highlighted && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-white text-zinc-950 text-xs font-medium rounded-full">
-                  Most Popular
+                  Más popular
                 </div>
               )}
 
@@ -158,10 +164,12 @@ export function Pricing() {
               <div className="mb-6">
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold text-white">${plan.price[billingCycle]}</span>
-                  {plan.price.monthly > 0 && <span className="text-zinc-400 text-sm">/month</span>}
+                  {plan.price.monthly > 0 && <span className="text-zinc-400 text-sm">/mes</span>}
                 </div>
                 {billingCycle === "yearly" && plan.price.yearly > 0 && (
-                  <p className="text-xs text-zinc-500 mt-1">Billed annually (${plan.price.yearly * 12}/year)</p>
+                  <p className="text-xs text-zinc-500 mt-1">
+                    Facturación anual (${plan.price.yearly * 12}/año)
+                  </p>
                 )}
               </div>
 

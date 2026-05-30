@@ -4,10 +4,10 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const footerLinks = {
-  Product: ["Features", "Pricing", "Changelog", "Roadmap", "API"],
-  Resources: ["Documentation", "Guides", "Blog", "Community", "Templates"],
-  Company: ["About", "Careers", "Press", "Partners", "Contact"],
-  Legal: ["Privacy", "Terms", "Security", "Cookies", "Licenses"],
+  Producto: ["Características", "Precios", "Novedades", "Hoja de ruta", "API"],
+  Recursos: ["Documentación", "Guías", "Blog", "Comunidad", "Plantillas"],
+  Empresa: ["Sobre nosotros", "Empleo", "Prensa", "Socios", "Contacto"],
+  Legal: ["Privacidad", "Términos", "Seguridad", "Cookies", "Licencias"],
 }
 
 export function Footer() {
@@ -31,11 +31,11 @@ export function Footer() {
               </div>
               <span className="font-semibold text-white">Apex</span>
             </a>
-            <p className="text-sm text-zinc-500 mb-4">The modern platform for teams who ship fast.</p>
+            <p className="text-sm text-zinc-500 mb-4">La plataforma moderna para equipos que lanzan rápido.</p>
             {/* System Status */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
               <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-              <span className="text-xs text-zinc-400">All Systems Operational</span>
+              <span className="text-xs text-zinc-400">Todos los sistemas operativos</span>
             </div>
           </div>
 
@@ -63,7 +63,9 @@ export function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-zinc-500">&copy; {new Date().getFullYear()} Apex, Inc. All rights reserved.</p>
+          <p className="text-sm text-zinc-500">
+            &copy; {new Date().getFullYear()} Apex, Inc. Todos los derechos reservados.
+          </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
               Twitter
