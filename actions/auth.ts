@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { getSiteUrl } from "@/lib/supabase/env"
 
 export type AuthState = {
   error?: string
@@ -26,13 +27,14 @@ export async function signUp(
   }
 
   const supabase = await createClient()
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lexsimple.es"
+  const callbackUrl = new URL("/auth/callback", getSiteUrl())
+  callbackUrl.searchParams.set("next", "/dashboard")
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${siteUrl}/auth/callback?next=/dashboard`,
+      emailRedirectTo: callbackUrl.toString(),
       data: {
         full_name: fullName || null,
       },
