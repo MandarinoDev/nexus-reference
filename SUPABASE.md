@@ -82,3 +82,15 @@ pnpm dev
 2. Crea una cuenta.
 3. Inicia sesion en `/login`.
 4. Deberias entrar en `/dashboard`.
+
+## 8. Links de suscripcion PayPal (Growth/Scale)
+
+Para usar links directos de PayPal (sin `client_id` ni `client_secret`), configura estas variables:
+
+```env
+PAYPAL_GROWTH_SUBSCRIPTION_URL=https://www.paypal.com/webapps/billing/plans/tu-link-growth
+PAYPAL_SCALE_SUBSCRIPTION_URL=https://www.paypal.com/webapps/billing/plans/tu-link-scale
+```
+
+- El boton de cada plan en `/dashboard` usa su variable correspondiente.
+- Si falta un link o la URL es invalida, ese plan se desactiva y muestra aviso.

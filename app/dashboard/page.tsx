@@ -1,8 +1,9 @@
 ﻿import Link from "next/link"
 import { Check } from "lucide-react"
 import { redirect } from "next/navigation"
-import { activateSubscription, signOut } from "@/actions/auth"
+import { signOut } from "@/actions/auth"
 import { Button } from "@/components/ui/button"
+import { getPayPalSubscriptionLink } from "@/lib/paypal-subscription-links"
 import { createClient } from "@/lib/supabase/server"
 import { isSubscriptionPlanId, subscriptionPlans, subscriptionPlansById } from "@/lib/subscription-plans"
 
@@ -81,56 +82,68 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {subscriptionPlans.map((plan) => (
-              <div
-                key={plan.id}
-                className={`relative rounded-2xl border p-6 ${
-                  plan.highlighted
-                    ? "border-zinc-700 bg-zinc-900"
-                    : "border-zinc-800 bg-zinc-900/70"
-                }`}
-              >
-                {plan.highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-xs font-medium text-zinc-950">
-                    Mas recomendado
-                  </span>
-                )}
+            {subscriptionPlans.map((plan) => {
+              const paypalUrl = getPayPalSubscriptionLink(plan.id)
 
-                <h2 className="text-xl font-semibold text-white mb-2">{plan.name}</h2>
-                <p className="text-sm text-zinc-400 mb-5">{plan.description}</p>
-
-                <div className="mb-5">
-                  <div className="flex items-end gap-2">
-                    <span className="text-4xl font-bold text-white">{plan.priceLabel}</span>
-                    <span className="text-zinc-400 text-sm mb-1">/mes</span>
-                  </div>
-                  <p className="text-sm text-emerald-400 mt-2">{plan.aiResponses}</p>
-                </div>
-
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm text-zinc-300">
-                      <Check className="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" strokeWidth={1.5} />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <form action={activateSubscription}>
-                  <input type="hidden" name="plan" value={plan.id} />
-                  <Button
-                    type="submit"
-                    className={`w-full rounded-full ${
+              return (
+                  <div
+                    key={plan.id}
+                    className={`relative rounded-2xl border p-6 ${
                       plan.highlighted
-                        ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200"
-                        : "bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-700"
+                        ? "border-zinc-700 bg-zinc-900"
+                        : "border-zinc-800 bg-zinc-900/70"
                     }`}
                   >
-                    Pagar {plan.priceLabel}/mes
-                  </Button>
-                </form>
-              </div>
-            ))}
+                    {plan.highlighted && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-xs font-medium text-zinc-950">
+                        Mas recomendado
+                      </span>
+                    )}
+
+                    <h2 className="text-xl font-semibold text-white mb-2">{plan.name}</h2>
+                    <p className="text-sm text-zinc-400 mb-5">{plan.description}</p>
+
+                    <div className="mb-5">
+                      <div className="flex items-end gap-2">
+                        <span className="text-4xl font-bold text-white">{plan.priceLabel}</span>
+                        <span className="text-zinc-400 text-sm mb-1">/mes</span>
+                      </div>
+                      <p className="text-sm text-emerald-400 mt-2">{plan.aiResponses}</p>
+                    </div>
+
+                    <ul className="space-y-3 mb-6">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3 text-sm text-zinc-300">
+                          <Check className="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" strokeWidth={1.5} />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {paypalUrl ? (
+                      <Button
+                        asChild
+                        className={`w-full rounded-full ${
+                          plan.highlighted
+                            ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200"
+                            : "bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-700"
+                        }`}
+                      >
+                        <a href={paypalUrl} target="_self" rel="noreferrer">
+                          Ir a PayPal {plan.priceLabel}/mes
+                        </a>
+                      </Button>
+                    ) : (
+                      <Button
+                        disabled
+                        className="w-full rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700 cursor-not-allowed"
+                      >
+                        Configura link PayPal en .env
+                      </Button>
+                    )}
+                  </div>
+              )
+            })}
           </div>
         </div>
       </div>

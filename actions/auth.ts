@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { getSiteUrl } from "@/lib/supabase/env"
 import { createClient } from "@/lib/supabase/server"
-import { isSubscriptionPlanId, subscriptionPlansById } from "@/lib/subscription-plans"
 
 export type AuthState = {
   error?: string
@@ -88,43 +87,4 @@ export async function signOut() {
   await supabase.auth.signOut()
   revalidatePath("/", "layout")
   redirect("/login")
-}
-
-export async function activateSubscription(formData: FormData) {
-  const selectedPlan = String(formData.get("plan") ?? "").trim()
-
-  if (!isSubscriptionPlanId(selectedPlan)) {
-    redirect("/dashboard?error=plan")
-  }
-
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect("/login?redirect=/dashboard")
-  }
-
-  const plan = subscriptionPlansById[selectedPlan]
-  const { error } = await supabase.auth.updateUser({
-    data: {
-      ...user.user_metadata,
-      subscription_status: "active",
-      subscription_plan: plan.id,
-      subscription_name: plan.name,
-      subscription_monthly_price: plan.priceMonthly,
-      subscription_currency: "EUR",
-      subscription_interval: "month",
-      subscription_updated_at: new Date().toISOString(),
-    },
-  })
-
-  if (error) {
-    redirect("/dashboard?error=payment")
-  }
-
-  revalidatePath("/", "layout")
-  revalidatePath("/dashboard")
-  redirect("/dashboard?subscribed=1")
 }
