@@ -1,17 +1,17 @@
-"use client"
+﻿"use client"
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const logos = [
-  { name: "Vercel", width: 100 },
-  { name: "Stripe", width: 80 },
-  { name: "Linear", width: 90 },
-  { name: "Notion", width: 100 },
-  { name: "Figma", width: 70 },
-  { name: "Slack", width: 90 },
-  { name: "Discord", width: 100 },
-  { name: "GitHub", width: 90 },
+  { name: "LexiCorp", width: 100 },
+  { name: "NorthBridge", width: 80 },
+  { name: "Artemis Legal", width: 120 },
+  { name: "Orbital Ops", width: 90 },
+  { name: "Helix Finance", width: 110 },
+  { name: "Vector Group", width: 100 },
+  { name: "Atlas Retail", width: 100 },
+  { name: "Nova Industrial", width: 120 },
 ]
 
 export function LogoMarquee() {
@@ -27,16 +27,14 @@ export function LogoMarquee() {
         className="text-center mb-10"
       >
         <p className="text-sm text-zinc-500 uppercase tracking-wider font-medium">
-          Con la confianza de líderes del sector
+          Empresas que ya analizan contratos y objetivos con LexSimple
         </p>
       </motion.div>
 
       <div className="relative">
-        {/* Fade masks */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
 
-        {/* Marquee container */}
         <div className="flex animate-marquee">
           {[...logos, ...logos].map((logo, index) => (
             <div

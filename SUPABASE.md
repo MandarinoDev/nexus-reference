@@ -1,4 +1,4 @@
-# Configurar Supabase Auth en Apex
+# Configurar Supabase Auth en LexSimple
 
 ## 1. Crear proyecto en Supabase
 

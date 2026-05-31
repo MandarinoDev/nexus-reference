@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
@@ -9,10 +9,9 @@ import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { label: "Características", href: "/#features" },
+  { label: "Caracteristicas", href: "/#features" },
+  { label: "Casos de uso", href: "/#features" },
   { label: "Precios", href: "/#pricing" },
-  { label: "Documentación", href: "/#docs" },
-  { label: "Blog", href: "/#blog" },
 ]
 
 export function Navbar() {
@@ -53,9 +52,9 @@ export function Navbar() {
       >
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-            <span className="text-zinc-950 font-bold text-sm">A</span>
+            <span className="text-zinc-950 font-bold text-sm">L</span>
           </div>
-          <span className="font-semibold text-white hidden sm:block">Apex</span>
+          <span className="font-semibold text-white hidden sm:block">LexSimple</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1 relative">
@@ -82,16 +81,14 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           {user ? (
-            <>
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="text-zinc-400 hover:text-white hover:bg-zinc-800"
-              >
-                <Link href="/dashboard">Mi cuenta</Link>
-              </Button>
-            </>
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            >
+              <Link href="/dashboard">Mi dashboard</Link>
+            </Button>
           ) : (
             <>
               <Button
@@ -100,10 +97,10 @@ export function Navbar() {
                 size="sm"
                 className="text-zinc-400 hover:text-white hover:bg-zinc-800"
               >
-                <Link href="/login">Iniciar sesión</Link>
+                <Link href="/login">Iniciar sesion</Link>
               </Button>
               <Button asChild size="sm" className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-4">
-                <Link href="/register">Empezar</Link>
+                <Link href="/register">Crear cuenta</Link>
               </Button>
             </>
           )}
@@ -112,7 +109,7 @@ export function Navbar() {
         <button
           className="md:hidden p-2 text-zinc-400 hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Abrir menú"
+          aria-label="Abrir menu"
         >
           {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -140,19 +137,19 @@ export function Navbar() {
             {user ? (
               <Button asChild className="justify-start text-zinc-400 hover:text-white">
                 <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                  Mi cuenta
+                  Mi dashboard
                 </Link>
               </Button>
             ) : (
               <>
                 <Button asChild variant="ghost" className="justify-start text-zinc-400 hover:text-white">
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                    Iniciar sesión
+                    Iniciar sesion
                   </Link>
                 </Button>
                 <Button asChild className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full">
                   <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-                    Empezar
+                    Crear cuenta
                   </Link>
                 </Button>
               </>

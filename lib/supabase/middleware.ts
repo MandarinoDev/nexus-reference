@@ -6,6 +6,11 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
+  type CookieToSet = {
+    name: string
+    value: string
+    options?: Parameters<typeof supabaseResponse.cookies.set>[2]
+  }
 
   const supabase = createServerClient(
     getSupabaseProjectUrl(),
@@ -15,7 +20,7 @@ export async function updateSession(request: NextRequest) {
         getAll() {
           return request.cookies.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieToSet[]) {
           cookiesToSet.forEach(({ name, value }) => {
             request.cookies.set(name, value)
           })

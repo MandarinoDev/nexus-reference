@@ -4,10 +4,10 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const footerLinks = {
-  Producto: ["Características", "Precios", "Novedades", "Hoja de ruta", "API"],
-  Recursos: ["Documentación", "Guías", "Blog", "Comunidad", "Plantillas"],
-  Empresa: ["Sobre nosotros", "Empleo", "Prensa", "Socios", "Contacto"],
-  Legal: ["Privacidad", "Términos", "Seguridad", "Cookies", "Licencias"],
+  Producto: ["Caracteristicas", "Precios", "Casos de uso", "Integraciones", "API"],
+  Recursos: ["Documentacion", "Guias", "Blog", "Comunidad", "Soporte"],
+  Empresa: ["Sobre nosotros", "Partners", "Contacto", "Ventas", "Demo"],
+  Legal: ["Privacidad", "Terminos", "Seguridad", "Cookies", "Licencias"],
 }
 
 export function Footer() {
@@ -23,23 +23,22 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-5 gap-8"
         >
-          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <a href="#" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-                <span className="text-zinc-950 font-bold text-sm">A</span>
+                <span className="text-zinc-950 font-bold text-sm">L</span>
               </div>
-              <span className="font-semibold text-white">Apex</span>
+              <span className="font-semibold text-white">LexSimple</span>
             </a>
-            <p className="text-sm text-zinc-500 mb-4">La plataforma moderna para equipos que lanzan rápido.</p>
-            {/* System Status */}
+            <p className="text-sm text-zinc-500 mb-4">
+              IA para empresas que quieren alinear negocio, objetivos y contratos.
+            </p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800">
               <span className="w-2 h-2 rounded-full bg-emerald-500 pulse-glow" />
-              <span className="text-xs text-zinc-400">Todos los sistemas operativos</span>
+              <span className="text-xs text-zinc-400">Plataforma operativa</span>
             </div>
           </div>
 
-          {/* Links */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
               <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
@@ -56,25 +55,22 @@ export function Footer() {
           ))}
         </motion.div>
 
-        {/* Bottom */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-zinc-500">
-            &copy; {new Date().getFullYear()} Apex, Inc. Todos los derechos reservados.
-          </p>
+          <p className="text-sm text-zinc-500">&copy; {new Date().getFullYear()} LexSimple. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              Twitter
+              LinkedIn
             </a>
             <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              GitHub
+              X
             </a>
             <a href="#" className="text-sm text-zinc-500 hover:text-white transition-colors">
-              Discord
+              YouTube
             </a>
           </div>
         </motion.div>

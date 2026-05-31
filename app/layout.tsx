@@ -1,4 +1,4 @@
-import type React from "react"
+﻿import type React from "react"
 import type { Metadata } from "next"
 import { Instrument_Sans, Manrope, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
@@ -23,9 +23,9 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Apex - Plataforma SaaS empresarial",
+  title: "LexSimple - IA para empresas y contratos",
   description:
-    "La plataforma moderna para equipos que lanzan rápido. Diseñada para escalar, pensada para la velocidad.",
+    "LexSimple ayuda a empresas a analizar negocio y contratos con IA para decidir mejor y avanzar hacia sus objetivos.",
   generator: "v0.app",
 }
 

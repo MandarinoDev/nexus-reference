@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from "next/link"
 import { useActionState } from "react"
@@ -16,12 +16,12 @@ export function RegisterForm() {
   return (
     <AuthCard
       title="Crear cuenta"
-      description="Regístrate gratis en Apex"
+      description="Registra tu empresa en LexSimple"
       footer={
         <>
-          ¿Ya tienes cuenta?{" "}
+          Ya tienes cuenta?{" "}
           <Link href="/login" className="text-white hover:underline">
-            Inicia sesión
+            Inicia sesion
           </Link>
         </>
       }
@@ -70,13 +70,13 @@ export function RegisterForm() {
 
         <div className="space-y-2">
           <Label htmlFor="password" className="text-zinc-300">
-            Contraseña
+            Contrasena
           </Label>
           <Input
             id="password"
             name="password"
             type="password"
-            placeholder="Mínimo 6 caracteres"
+            placeholder="Minimo 6 caracteres"
             required
             minLength={6}
             autoComplete="new-password"

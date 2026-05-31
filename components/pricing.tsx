@@ -1,58 +1,11 @@
-"use client"
+﻿"use client"
 
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const plans = [
-  {
-    name: "Inicial",
-    description: "Ideal para proyectos personales y equipos pequeños",
-    price: { monthly: 0, yearly: 0 },
-    features: [
-      "3 miembros del equipo",
-      "10 proyectos",
-      "Analítica básica",
-      "Soporte de la comunidad",
-      "1 GB de almacenamiento",
-    ],
-    cta: "Empezar",
-    highlighted: false,
-  },
-  {
-    name: "Pro",
-    description: "Para equipos en crecimiento que necesitan más potencia",
-    price: { monthly: 29, yearly: 24 },
-    features: [
-      "Miembros ilimitados",
-      "Proyectos ilimitados",
-      "Analítica avanzada",
-      "Soporte prioritario",
-      "100 GB de almacenamiento",
-      "Dominios personalizados",
-      "Acceso a la API",
-    ],
-    cta: "Prueba gratis",
-    highlighted: true,
-  },
-  {
-    name: "Empresa",
-    description: "Para organizaciones con necesidades avanzadas",
-    price: { monthly: 99, yearly: 79 },
-    features: [
-      "Todo lo de Pro",
-      "SSO y SAML",
-      "Soporte dedicado",
-      "Garantía SLA",
-      "Almacenamiento ilimitado",
-      "Integraciones personalizadas",
-      "Registros de auditoría",
-    ],
-    cta: "Contactar ventas",
-    highlighted: false,
-  },
-]
+import { subscriptionPlans } from "@/lib/subscription-plans"
 
 function BorderBeam() {
   return (
@@ -70,11 +23,10 @@ function BorderBeam() {
 export function Pricing() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly")
 
   return (
     <section id="pricing" className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -85,48 +37,12 @@ export function Pricing() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Precios simples y transparentes
+            Planes de LexSimple para empresas
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
-            Empieza gratis y escala según crezcas. Sin costes ocultos ni sorpresas.
+          <p className="text-zinc-400 max-w-2xl mx-auto">
+            Dos planes claros, ambos de pago, para analizar contratos, medir objetivos y escalar con mas respuestas IA
+            en tu operacion.
           </p>
-
-          {/* Billing Toggle */}
-          <div className="inline-flex items-center p-1 rounded-full bg-zinc-900 border border-zinc-800">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "monthly" ? "text-white" : "text-zinc-400"
-              }`}
-            >
-              {billingCycle === "monthly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Mensual</span>
-            </button>
-            <button
-              onClick={() => setBillingCycle("yearly")}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                billingCycle === "yearly" ? "text-white" : "text-zinc-400"
-              }`}
-            >
-              {billingCycle === "yearly" && (
-                <motion.div
-                  layoutId="billing-toggle"
-                  className="absolute inset-0 bg-zinc-800 rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Anual</span>
-              <span className="relative z-10 ml-2 px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">
-                -20%
-              </span>
-            </button>
-          </div>
         </motion.div>
 
         <motion.div
@@ -134,11 +50,11 @@ export function Pricing() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {plans.map((plan, index) => (
+          {subscriptionPlans.map((plan, index) => (
             <motion.div
-              key={plan.name}
+              key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
@@ -152,7 +68,7 @@ export function Pricing() {
 
               {plan.highlighted && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-white text-zinc-950 text-xs font-medium rounded-full">
-                  Más popular
+                  Mas elegido
                 </div>
               )}
 
@@ -163,14 +79,10 @@ export function Pricing() {
 
               <div className="mb-6">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">${plan.price[billingCycle]}</span>
-                  {plan.price.monthly > 0 && <span className="text-zinc-400 text-sm">/mes</span>}
+                  <span className="text-4xl font-bold text-white">{plan.priceLabel}</span>
+                  <span className="text-zinc-400 text-sm">/mes</span>
                 </div>
-                {billingCycle === "yearly" && plan.price.yearly > 0 && (
-                  <p className="text-xs text-zinc-500 mt-1">
-                    Facturación anual (${plan.price.yearly * 12}/año)
-                  </p>
-                )}
+                <p className="text-sm text-emerald-400 mt-2">{plan.aiResponses}</p>
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -183,13 +95,14 @@ export function Pricing() {
               </ul>
 
               <Button
+                asChild
                 className={`w-full rounded-full ${
                   plan.highlighted
                     ? "shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200"
                     : "bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-700"
                 }`}
               >
-                {plan.cta}
+                <Link href="/register">Elegir {plan.name}</Link>
               </Button>
             </motion.div>
           ))}

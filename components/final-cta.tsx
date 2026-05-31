@@ -23,10 +23,11 @@ export function FinalCTA() {
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight"
           style={{ fontFamily: "var(--font-cal-sans)" }}
         >
-          ¿Listo para lanzar más rápido?
+          Lleva tus decisiones de negocio a otro nivel
         </h2>
         <p className="text-lg sm:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
-          Únete a miles de equipos que ya crean con Apex. Empieza gratis, sin tarjeta de crédito.
+          Activa LexSimple y usa IA para revisar contratos, anticipar riesgos y comprobar si tu empresa va hacia sus
+          objetivos.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -36,7 +37,7 @@ export function FinalCTA() {
             className="shimmer-btn bg-white text-zinc-950 hover:bg-zinc-200 rounded-full px-8 h-14 text-base font-medium shadow-lg shadow-white/20"
           >
             <Link href="/register">
-              Empezar gratis
+              Crear cuenta
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </Button>
@@ -46,13 +47,11 @@ export function FinalCTA() {
             size="lg"
             className="rounded-full px-8 h-14 text-base font-medium border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white hover:border-zinc-700 bg-transparent"
           >
-            <Link href="/login">Iniciar sesión</Link>
+            <Link href="/login">Iniciar sesion</Link>
           </Button>
         </div>
 
-        <p className="mt-8 text-sm text-zinc-500">
-          Gratis para siempre en el plan individual. Los planes de equipo empiezan en 29 $/mes.
-        </p>
+        <p className="mt-8 text-sm text-zinc-500">Suscripciones mensuales desde 9,99 euros para empresas.</p>
       </motion.div>
     </section>
   )

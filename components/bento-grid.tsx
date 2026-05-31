@@ -20,7 +20,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 }
@@ -66,7 +66,7 @@ function KeyboardCommand() {
         animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
         className="px-2 py-1 text-xs bg-zinc-800 border border-zinc-700 rounded text-zinc-300 font-mono"
       >
-        ⌘
+        Ctrl
       </motion.kbd>
       <motion.kbd
         animate={pressed ? { scale: 0.95, y: 2 } : { scale: 1, y: 0 }}
@@ -131,11 +131,11 @@ export function BentoGrid() {
             className="text-3xl sm:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-instrument-sans)" }}
           >
-            Todo lo que necesitas para lanzar
+            Todo lo que necesitas para decidir mejor
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
-            Pensada para equipos modernos. Funciones potentes que te ayudan a crear, desplegar y escalar más rápido que
-            nunca.
+            LexSimple combina IA de negocio y analisis contractual para que tu empresa avance con mas control y menos
+            riesgo.
           </p>
         </motion.div>
 
@@ -146,7 +146,6 @@ export function BentoGrid() {
           animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {/* Large card - System Status */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-2 group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
@@ -156,16 +155,16 @@ export function BentoGrid() {
                 <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
                   <Activity className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Monitorización en tiempo real</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">Riesgo contractual en tiempo real</h3>
                 <p className="text-zinc-400 text-sm">
-                  Supervisa el estado del sistema, métricas de rendimiento y alertas en tiempo real en todos tus
-                  despliegues.
+                  Prioriza clausulas criticas, vencimientos y obligaciones para actuar antes de que aparezcan problemas
+                  legales u operativos.
                 </p>
               </div>
               <SystemStatus />
             </div>
             <div className="grid grid-cols-4 gap-4">
-              {["CPU", "Memoria", "Red", "Almacenamiento"].map((metric) => (
+              {["Riesgo", "Cumplimiento", "Renovaciones", "Objetivos"].map((metric) => (
                 <div key={metric} className="text-center">
                   <div className="text-2xl font-bold text-white mb-1">{Math.floor(Math.random() * 40 + 60)}%</div>
                   <div className="text-xs text-zinc-500">{metric}</div>
@@ -174,7 +173,6 @@ export function BentoGrid() {
             </div>
           </motion.div>
 
-          {/* Command Palette */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
@@ -182,14 +180,13 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Command className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Paleta de comandos</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Consultas instantaneas</h3>
             <p className="text-zinc-400 text-sm mb-6">
-              Navega a cualquier parte al instante con atajos de teclado potentes.
+              Pregunta a la IA por clausulas, desviaciones y proximos pasos sin salir del flujo de trabajo.
             </p>
             <KeyboardCommand />
           </motion.div>
 
-          {/* Analytics */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
@@ -197,12 +194,13 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <BarChart3 className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Analítica</h3>
-            <p className="text-zinc-400 text-sm mb-4">Información detallada sobre el rendimiento de tu aplicación.</p>
+            <h3 className="text-lg font-semibold text-white mb-2">Analitica de negocio</h3>
+            <p className="text-zinc-400 text-sm mb-4">
+              Visualiza progreso por objetivo, acuerdos clave y salud global de cada cuenta.
+            </p>
             <AnimatedChart />
           </motion.div>
 
-          {/* Performance */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
@@ -210,17 +208,16 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Zap className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Ultrarrápido</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Mas respuestas IA</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              Infraestructura optimizada en el edge con tiempos de respuesta inferiores a 50 ms en todo el mundo.
+              Obtiene recomendaciones accionables sobre ventas, operaciones y contratos en segundos.
             </p>
             <div className="flex items-center gap-2 text-emerald-500 text-sm">
-              <span className="font-mono">~32ms</span>
-              <span className="text-zinc-500">respuesta media</span>
+              <span className="font-mono">+2500</span>
+              <span className="text-zinc-500">respuestas IA/mes en plan Scale</span>
             </div>
           </motion.div>
 
-          {/* Security */}
           <motion.div
             variants={itemVariants}
             className="group relative p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-600 hover:scale-[1.02] transition-all duration-300"
@@ -228,14 +225,14 @@ export function BentoGrid() {
             <div className="p-2 rounded-lg bg-zinc-800 w-fit mb-4">
               <Shield className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Seguridad empresarial</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Confianza empresarial</h3>
             <p className="text-zinc-400 text-sm mb-4">
-              Cumplimiento SOC2 con cifrado de extremo a extremo y soporte SSO.
+              Controles para operar con informacion sensible de clientes, contratos y estrategia.
             </p>
             <div className="flex items-center gap-2">
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">SOC2</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">GDPR</span>
-              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">HIPAA</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">RGPD</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">Cifrado</span>
+              <span className="px-2 py-1 text-xs bg-zinc-800 rounded text-zinc-400">Trazabilidad</span>
             </div>
           </motion.div>
         </motion.div>

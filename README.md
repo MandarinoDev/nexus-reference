@@ -1,4 +1,4 @@
-# Nexus Reference (Apex)
+# Nexus Reference (LexSimple)
 
 Landing page SaaS en Next.js 16 con autenticación Supabase.
 

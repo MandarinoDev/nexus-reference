@@ -15,9 +15,9 @@ export function AuthCard({ title, description, children, footer }: AuthCardProps
       <div className="relative z-10 w-full max-w-md">
         <Link href="/" className="flex items-center justify-center gap-2 mb-8">
           <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
-            <span className="text-zinc-950 font-bold">A</span>
+            <span className="text-zinc-950 font-bold">L</span>
           </div>
-          <span className="font-semibold text-white text-lg">Apex</span>
+          <span className="font-semibold text-white text-lg">LexSimple</span>
         </Link>
 
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 backdrop-blur-md p-8">
